@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
+import { Category } from "../modules/cars/entities/Category";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -8,5 +9,6 @@ export const AppDataSource = new DataSource({
   username: "docker",
   password: "ignite",
   database: "rentx",
-  migrations: ["./src/database/migrations/*.ts"]
+  migrations: ["./src/database/migrations/*.{ts,js}"],
+  entities: [Category]
 });
