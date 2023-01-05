@@ -5,10 +5,10 @@ import swaggerUi from "swagger-ui-express";
 
 import "@shared/container";
 
-import { router } from "./routes";
-import swaggerFile from "./swagger.json";
-import { AppDataSource } from "./database";
-import { AppError } from "@errors/AppError";
+import { router } from "@shared/infra/http/routes";
+import swaggerFile from "../../../swagger.json";
+import { AppError } from "@shared/errors/AppError";
+import { AppDataSource } from "../typeorm";
 
 AppDataSource.initialize()
   .then(() => {
@@ -22,6 +22,7 @@ AppDataSource.initialize()
 
     app.use(router);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
       if(err instanceof AppError){
         return response.status(err.statusCode).json({
