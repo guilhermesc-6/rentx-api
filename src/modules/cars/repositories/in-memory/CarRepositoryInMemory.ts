@@ -5,7 +5,7 @@ import { ICarsRepository } from "../ICarsRepository";
 export class CarsRepositoryInMemory implements ICarsRepository {
   cars: Car[];
 
-  constructor(){
+  constructor() {
     this.cars = [];
   }
 
@@ -37,5 +37,40 @@ export class CarsRepositoryInMemory implements ICarsRepository {
 
   async findByLicensePlate(license_plate: string): Promise<Car> {
     return this.cars.find((car) => car.license_plate === license_plate);
+  }
+
+  async findAvailable(
+    brand?: string,
+    name?: string,
+    category_id?: string
+  ): Promise<Car[]> {
+    const all = this.cars.filter((car) => {
+      if (
+        car.available || (brand && car.brand === brand) ||
+        (name && car.name === name) ||
+        (category_id && car.category_id === category_id)
+      ) {
+        return car;
+      }
+      return;
+    });
+
+    //   this.cars
+    // .filter((car) => car.available)
+    // .filter((car) => {
+    //   if (
+    //     (brand && car.brand === brand) ||
+    //     (name && car.name === name) ||
+    //     (category_id && car.category_id === category_id)
+    //   ) {
+    //     return car;
+    //   } else {
+    //     if (!brand || !name || !category_id) {
+    //       return car;
+    //     }
+    //   }
+    // });
+
+    return all;
   }
 }
