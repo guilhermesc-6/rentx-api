@@ -8,9 +8,9 @@ interface IFiles {
 }
 
 export class UploadCarImagesController {
-  async handle(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
-    const images = req.files as IFiles[];
+  async handle(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+    const images = request.files as IFiles[];
 
     const uploadCarImagesUseCase = container.resolve(UploadCarImagesUseCase);
 
@@ -18,6 +18,6 @@ export class UploadCarImagesController {
 
     await uploadCarImagesUseCase.execute({ car_id: id, images_name });
 
-    return res.status(201).send();
+    return response.status(201).send();
   }
 }
