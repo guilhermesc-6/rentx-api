@@ -10,7 +10,7 @@ async function create(){
 
     await AppDataSource.query(
       `INSERT INTO USERS(id, name, email, password, "isAdmin", created_at, driver_license)
-    VALUES('${id}', 'admin', 'admin@rentx.com', '${password}', true, 'now()', 'XXXXXXXXXXXX')
+    VALUES('${id}', 'admin', 'admin@rentx.com.br', '${password}', true, 'now()', 'XXXXXXXXXXXX')
     `
     );
 
