@@ -7,6 +7,7 @@ import { Category } from "../../../modules/cars/infra/typeorm/entities/Category"
 import { Specification } from "../../../modules/cars/infra/typeorm/entities/Specification";
 import { CarImage } from "../../../modules/cars/infra/typeorm/entities/CarImage";
 import { Rental } from "../../../modules/rentals/infra/typeorm/entities/Rental";
+import { UserTokens } from "../../../modules/accounts/infra/typeorm/entities/UserTokens";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -16,5 +17,5 @@ export const AppDataSource = new DataSource({
   password: "ignite",
   database: process.env.NODE_ENV === "test" ? "rentx_test" : "rentx",
   migrations: ["./src/shared/infra/typeorm/migrations/*.{ts,js}"],
-  entities: [Category, Specification, User, Car, CarImage, Rental]
+  entities: [Category, Specification, User, Car, CarImage, Rental, UserTokens]
 });
