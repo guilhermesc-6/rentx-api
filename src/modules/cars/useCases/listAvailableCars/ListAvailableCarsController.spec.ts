@@ -32,7 +32,7 @@ describe("List Available Cars Controller", () => {
       password: "admin",
     });
 
-    const { token } = responseToken.body;
+    const { refresh_token } = responseToken.body;
 
     const { body: category } = await request(app)
       .post("/categories")
@@ -41,7 +41,7 @@ describe("List Available Cars Controller", () => {
         description: "category test",
       })
       .set({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${refresh_token}`,
       });
 
     await request(app)
@@ -56,7 +56,7 @@ describe("List Available Cars Controller", () => {
         category_id: category.id,
       })
       .set({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${refresh_token}`,
       });
 
     const response = await request(app).get("/cars/available");

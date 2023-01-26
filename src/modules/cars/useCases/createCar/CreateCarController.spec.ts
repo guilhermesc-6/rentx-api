@@ -32,7 +32,7 @@ describe("Create Car Controller", () => {
       password: "admin",
     });
 
-    const { token } = responseToken.body;
+    const { refresh_token } = responseToken.body;
 
     const { body: category } = await request(app)
       .post("/categories")
@@ -41,7 +41,7 @@ describe("Create Car Controller", () => {
         description: "category test",
       })
       .set({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${refresh_token}`,
       });
 
     const response = await request(app)
@@ -56,7 +56,7 @@ describe("Create Car Controller", () => {
         category_id: category.id,
       })
       .set({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${refresh_token}`,
       });
 
     expect(response.status).toBe(201);
@@ -69,7 +69,7 @@ describe("Create Car Controller", () => {
       password: "admin",
     });
 
-    const { token } = responseToken.body;
+    const { refresh_token } = responseToken.body;
 
     const { body: category } = await request(app)
       .post("/categories")
@@ -78,7 +78,7 @@ describe("Create Car Controller", () => {
         description: "category test",
       })
       .set({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${refresh_token}`,
       });
 
     const response = await request(app)
@@ -93,7 +93,7 @@ describe("Create Car Controller", () => {
         category_id: category.id,
       })
       .set({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${refresh_token}`,
       });
 
     expect(response.status).toBe(400);
